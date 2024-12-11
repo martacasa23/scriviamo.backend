@@ -38,6 +38,7 @@ app.post('/upload-story', upload.single('file'), (req, res) => {
   res.status(500).json({ success: false, message: 'Errore durante l\'upload', error });
 }
 });
-app.listen(5000, () => {
+app.listen(5000, '0.0.0.0', () => {
   console.log('Server in ascolto sulla porta 5000');
 });
+
