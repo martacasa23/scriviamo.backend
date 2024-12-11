@@ -3,30 +3,14 @@ import multer from 'multer';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
-const app = express();
-const express = require('express');
+const app = express();  // Devi dichiarare l'app Express
 const port = 5000;
 
+// Usa il middleware per parsare il body
 app.use(express.json()); // Middleware per parsare JSON
-
-// Endpoint per caricare la storia
-app.post('/upload-story', (req, res) => {
-  const { title, content } = req.body;
-  // Logica per salvare la storia
-  console.log('Storia ricevuta:', title, content);
-  res.status(200).send({ message: 'Storia caricata con successo!' });
-});
-
-// Avvio del server
-app.listen(port, () => {
-  console.log(`Server in ascolto su http://localhost:${port}`);
-});
-
 app.use(cors({
   origin: ['https://scriviamo.org', 'http://localhost:3000'],
 }));
-
-// Usa il middleware per parsare il body
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -64,6 +48,7 @@ app.post('/upload-story', upload.single('file'), (req, res) => {
   }
 });
 
-app.listen(5000, '0.0.0.0', () => {
-  console.log('Server in ascolto sulla porta 5000');
+// Avvio del server
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server in ascolto su http://145.223.80.233:${port}`);
 });
