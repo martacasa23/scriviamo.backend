@@ -5,7 +5,7 @@ import cors from 'cors';  // Aggiungi cors
 const app = express();
 
 app.use(cors({
-  origin: 'scriviamo.org'
+  origin: 'https://scriviamo.org'
 }));
 
 // Configura Multer per gestire l'upload del file
