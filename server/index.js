@@ -3,12 +3,15 @@ import multer from 'multer';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
-const PORT = process.env.PORT || 5000;
+const app = express();  // Initializing the app
+
+const PORT = process.env.PORT || 5000;  // Setting the port
+
+// Define routes and middleware here
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Backend server running on port ${PORT}`);
 });
-const app= express();
 
 // Usa il middleware per parsare il body
 app.use(express.json()); // Middleware per parsare JSON
