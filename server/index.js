@@ -1,12 +1,19 @@
 import express from 'express';
+import https from 'https';
+import fs from 'fs';
 import multer from 'multer';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import helmet from 'helmet'; // Importa helmet
+import helmet from 'helmet';
 
-const app = express();  // Inizializza l'app
+const app = express(); // Inizializza l'app
+const PORT = process.env.PORT || 5000; // Imposta la porta
 
-const PORT = process.env.PORT || 5000;  // Imposta la porta
+// Certificati SSL
+const sslOptions = {
+  key: fs.readFileSync('/etc/letsencrypt/live/scriviamo.org/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/scriviamo.org/fullchain.pem'),
+};
 
 // Usa Helmet per aumentare la sicurezza
 app.use(helmet({
@@ -15,7 +22,7 @@ app.use(helmet({
 }));
 
 // Middleware per analizzare il corpo delle richieste
-app.use(express.json()); // Middleware per analizzare JSON
+app.use(express.json());
 app.use(cors({
   origin: ['https://scriviamo.org', 'http://localhost:3000'], // Permetti CORS
 }));
@@ -56,11 +63,12 @@ app.post('/upload-story', upload.single('file'), (req, res) => {
   }
 });
 
+// Endpoint di test
 app.get('/api', (req, res) => {
-  res.send('Endpoint API');
+  res.send('Endpoint API attivo!');
 });
 
-// Avvia il server
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Backend server running on port ${PORT}`);
+// Avvia il server HTTPS
+https.createServer(sslOptions, app).listen(PORT, '0.0.0.0', () => {
+  console.log(`Server HTTPS in esecuzione su https://scriviamo.org:${PORT}`);
 });
