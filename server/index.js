@@ -47,6 +47,10 @@ app.post('/upload-story', upload.single('file'), (req, res) => {
     res.status(500).json({ success: false, message: 'Errore durante l\'upload', error });
   }
 });
+app.get('/api', (req, res) => {
+  res.send('Endpoint API');
+});
+
 
 // Avvio del server
 app.listen(port, '0.0.0.0', () => {
