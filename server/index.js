@@ -51,9 +51,6 @@ app.get('/api', (req, res) => {
   res.send('Endpoint API');
 });
 
-
-// Avvio del server
-app.listen(port, '0.0.0.0', () => {
-  console.log(`Server in ascolto su http://145.223.80.233:${port}`);
+app.listen(port, () => {
+  console.log(`Server in ascolto su http://localhost:${port}`);
 });
-
