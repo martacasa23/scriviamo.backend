@@ -52,8 +52,7 @@ app.get('/api', (req, res) => {
 });
 
 
-// Avvio del server
-app.listen(port, '0.0.0.0', () => {
-  console.log(`Server in ascolto su http://145.223.80.233:${port}`);
+app.listen(5000, '0.0.0.0', () => {
+  console.log('Backend server running on port 5000');
 });
 
