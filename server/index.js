@@ -3,8 +3,8 @@ import multer from 'multer';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
-const app = express();  // Devi dichiarare l'app Express
 const port = 5000;
+const app= express();
 
 // Usa il middleware per parsare il body
 app.use(express.json()); // Middleware per parsare JSON
@@ -52,3 +52,4 @@ app.post('/upload-story', upload.single('file'), (req, res) => {
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server in ascolto su http://145.223.80.233:${port}`);
 });
+
