@@ -52,7 +52,6 @@ app.get('/api', (req, res) => {
 });
 
 
-app.listen(5000, '0.0.0.0', () => {
-  console.log('Backend server running on port 5000');
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Backend server running on port ${PORT}`);
 });
-
