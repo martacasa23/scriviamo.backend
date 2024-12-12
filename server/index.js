@@ -14,12 +14,12 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`Backend server running on port ${PORT}`);
 });
 
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'none'"],
-    imgSrc: ["'self'", 'https://scriviamo.org'],  // Aggiungi qui il tuo dominio
-  }
+app.use(helmet({
+  noCache: true, // Disables cache headers
+  contentSecurityPolicy: false, // Disable CSP
 }));
+
+
 
 // Usa il middleware per parsare il body
 app.use(express.json()); // Middleware per parsare JSON
