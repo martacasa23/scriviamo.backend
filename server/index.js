@@ -3,7 +3,11 @@ import multer from 'multer';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
-const port = 5000;
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Backend server running on port ${PORT}`);
+});
 const app= express();
 
 // Usa il middleware per parsare il body
@@ -52,6 +56,4 @@ app.get('/api', (req, res) => {
 });
 
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Backend server running on port ${PORT}`);
-});
+
