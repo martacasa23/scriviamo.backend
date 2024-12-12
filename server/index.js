@@ -2,6 +2,7 @@ import express from 'express';
 import multer from 'multer';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import helmet from 'helmet';
 
 const app = express();  // Initializing the app
 
@@ -12,6 +13,13 @@ const PORT = process.env.PORT || 5000;  // Setting the port
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Backend server running on port ${PORT}`);
 });
+
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'none'"],
+    imgSrc: ["'self'", 'https://scriviamo.org'],  // Aggiungi qui il tuo dominio
+  }
+}));
 
 // Usa il middleware per parsare il body
 app.use(express.json()); // Middleware per parsare JSON
